@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los Santos Medical Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --card: #13161e;
+    --border: #1e2330;
+    --accent: #00c6a7;
+    --accent2: #0099ff;
+    --red: #ff4757;
+    --gold: #ffd700;
+    --text: #e8eaf0;
+    --muted: #7a8099;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Vazirmatn', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0a0d12 0%, #111520 50%, #0a1520 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 24px 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(0,198,167,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-icon { font-size: 52px; display: block; margin-bottom: 12px; }
+  .header-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .header-main {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.3;
+  }
+  .header-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 10px;
+    font-weight: 400;
+  }
+  .header-line {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    margin: 20px auto 0;
+  }
+
+  /* CONTENT */
+  .content { max-width: 720px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 28px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    animation: fadeUp 0.4s ease both;
+  }
+  .section:nth-child(1) { animation-delay: 0.05s }
+  .section:nth-child(2) { animation-delay: 0.10s }
+  .section:nth-child(3) { animation-delay: 0.15s }
+  .section:nth-child(4) { animation-delay: 0.20s }
+  .section:nth-child(5) { animation-delay: 0.25s }
+  .section:nth-child(6) { animation-delay: 0.30s }
+  .section:nth-child(7) { animation-delay: 0.35s }
+  .section:nth-child(8) { animation-delay: 0.40s }
+  .section:nth-child(9) { animation-delay: 0.45s }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: rgba(0,198,167,0.05);
+    border-bottom: 1px solid var(--border);
+  }
+  .section-badge {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #000;
+    font-weight: 800;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .section-icon { font-size: 18px; margin-right: 2px; }
+  .section-body { padding: 20px; line-height: 1.9; font-size: 14px; color: #c8cad8; }
+
+  /* SHIFTS */
+  .shifts { display: flex; flex-direction: column; gap: 10px; }
+  .shift {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+  .shift-icon { font-size: 22px; }
+  .shift-label { font-weight: 600; color: var(--white); font-size: 14px; }
+  .shift-time { color: var(--accent); font-weight: 700; font-size: 14px; margin-right: auto; direction: ltr; }
+
+  /* REQUIREMENTS */
+  .req-list { display: flex; flex-direction: column; gap: 8px; }
+  .req-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: rgba(255,255,255,0.02);
+    border-right: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+  .req-item .icon { flex-shrink: 0; }
+
+  /* RULES */
+  .rules-list { display: flex; flex-direction: column; gap: 10px; }
+  .rule {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 14px;
+  }
+  .rule:last-child { border-bottom: none; padding-bottom: 0; }
+  .rule-num {
+    background: rgba(0,198,167,0.15);
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 12px;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* VEHICLE */
+  .vehicle-list { display: flex; flex-direction: column; gap: 8px; }
+  .vehicle-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 14px;
+  }
+  .vehicle-item:last-child { border-bottom: none; }
+  .v-dot { color: var(--accent2); font-size: 18px; flex-shrink: 0; line-height: 1.4; }
+
+  /* ACCESS TABLE */
+  .access-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .access-table th {
+    background: rgba(0,198,167,0.1);
+    color: var(--accent);
+    font-weight: 700;
+    padding: 10px 14px;
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+  }
+  .access-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: #c8cad8;
+  }
+  .access-table tr:last-child td { border-bottom: none; }
+  .access-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* RANKS */
+  .ranks-list { display: flex; flex-direction: column; gap: 8px; }
+  .rank-item {
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .rank-badge {
+    background: rgba(0,153,255,0.15);
+    color: var(--accent2);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    direction: ltr;
+  }
+  .rank-name { font-weight: 600; color: var(--white); font-size: 14px; }
+  .rank-role { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* DUTIES */
+  .duty-item {
+    background: rgba(255,255,255,0.02);
+    border-right: 3px solid var(--accent2);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  .duty-title { font-weight: 700; color: var(--white); margin-bottom: 5px; font-size: 14px; }
+
+  /* PRICES */
+  .price-group { margin-bottom: 18px; }
+  .price-group-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+  }
+  .price-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 14px;
+  }
+  .price-row:last-child { border-bottom: none; }
+  .price-val { color: var(--gold); font-weight: 700; direction: ltr; }
+
+  /* CODES */
+  .codes-list { display: flex; flex-direction: column; gap: 6px; }
+  .code-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 6px;
+    font-size: 13px;
+  }
+  .code-tag {
+    background: rgba(255,71,87,0.15);
+    color: var(--red);
+    font-weight: 700;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    direction: ltr;
+    margin-top: 1px;
+  }
+  .code-tag.green { background: rgba(0,198,167,0.15); color: var(--accent); }
+  .code-tag.blue { background: rgba(0,153,255,0.15); color: var(--accent2); }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 32px 20px;
+    color: var(--muted);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+    margin-top: 12px;
+  }
+  .footer span { color: var(--accent); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="header-icon">🏥</span>
+  <div class="header-title">Los Santos Medical Center</div>
+  <div class="header-main">قوانین سازمان پزشکی<br>لوس سانتوس</div>
+  <div class="header-sub">ایالت امگا — بخش بهداشت و درمان</div>
+  <div class="header-line"></div>
+</div>
+
+<div class="content">
+
+  <!-- بخش ۱ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-badge">بخش ۱</span>
+      <span class="section-icon">🏥</span>
+      <span class="section-title">معرفی سازمان</span>
+    </div>
+    <div class="section-body">
+      <p>بیمارستان لوس سانتوس یکی از بزرگترین و معتبرترین مراکز درمانی ایالت امگا است. این سازمان موظف به تأمین و حفظ بهداشت عمومی در شهر لوس سانتوس و مناطق حومه‌ای آن می‌باشد.</p>
+      <br>
+      <p>🚑 تیم امدادرسانی شبانه‌روز در خطوط مقدم شهر حاضر بوده و مسئولیت رسیدگی به بیماران و مجروحان را در تمامی نقاط شهر بر عهده دارد.</p>
+      <br>
+      <p>👨‍⚕️ این تیم همچنین موظف است سلامت کارمندان دولتی را زیر نظر داشته باشد و در صورت نیاز سریعاً به مصدومین عضو دولت امدادرسانی کند.</p>
+      <br>
+      <p>🧾 سازمان با توجه به شرایط جسمانی و روحانی شهروندان، فرصت‌های شغلی در حوزه بهداشت و درمان را در اختیار علاقه‌مندان قرار می‌دهد.</p>
+    </div>
+  </div>
+
+  <!-- بخش ۲ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-badge">بخش ۲</span>
+      <span class="section-icon">⏰</span>
+      <span class="section-title">ساعت کاری</span>
+    </div>
+    <div class="section-body">
+      <div class="shifts">
+        <div class="shift">
+          <span class="shift-icon">🌅</span>
+          <span class="shift-label">شیفت صبح</span>
+          <span class="shift-time">08:00 — 11:00</span>
+        </div>
+        <div class="shift">
+          <span class="shift-icon">☀️</span>
+          <span class="shift-label">شیفت عصر</span>
+          <span class="shift-time">13:00 — 18:00</span>
+        </div>
+        <div class="shift">
+          <span class="shift-icon">🌙</span>
+          <span class="shift-label">شیفت شب</span>
+          <span class="shift-time">20:00 — 00:00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- بخش ۳ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-badge">بخش ۳</span>
+      <span class="section-icon">🗂️</span>
+      <span class="section-title">چگونگی عضوگیری</span>
+    </div>
+    <div class="section-body">
+      <div class="req-list">
+        <div class="req-item"><span class="icon">👤</span><span>سن مورد نیاز: <strong>+15</strong></span></div>
+        <div class="req-item"><span class="icon">📋</span><span>داشتن مجوزهای <strong>رانندگی</strong> و <strong>خلبانی</strong></span></div>
+        <div class="req-item"><span class="icon">🏥</span><span>داشتن <strong>کارت سلامت</strong> معتبر</span></div>
+        <div class="req-item"><span class="icon">📰</span><span>تسلط کامل به قوانین و <strong>CMDهای</strong> مربوط به فکشن</span></div>
+        <div class="req-item"><span class="icon">📁</span><span>تسلط به <strong>کدهای رادیویی</strong> سازمان</span></div>
+        <div class="req-item"><span class="icon">✏️</span><span>تسلط به قوانین و <strong>اصطلاحات آرپی</strong></span></div>
+      </div>
+      <br>
+      <p style="color: var(--muted); font-size: 13px;">⬇️⬆️ این سازمان برخی از نیروهای خود را از سازمان‌های دیگر وزارت بهداشت از طریق انتقالی تأمین می‌کند.</p>
+    </div>
+  </div>
+
+  <!-- بخش ۴ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-badge">بخش ۴</span>
+      <span class="section-icon">📖</span>
+      <span class="section-title">اخلاق و معنویت</span>
+    </div>
+    <div class="section-body">
+      <div class="rules-list">
+        <div class="rule"><div class="rule-num">۱</div><span>اعضا باید ادب و احترام کل ایالت امگا را رعایت کنند.</span></div>
+        <div class="rule"><div class="rule-num">۲</div><span>باید از رفتارهایی مانند توهین، شوخی‌های بی‌جا و مسخره‌بازی خودداری کنند.</span></div>
+        <div class="rule"><div class="rule-num">۳</div><span>دستورات رئیس بیمارستان باید در هر شرایطی اطاعت شود. هرگونه مشکل به رئیس یا معاونین اطلاع داده شود.</span></div>
+        <div class="rule"><div class="rule-num">۴</div><span>اعضا موظفند نماز خود را به موقع اقامه کنند و در مسجد شهر لوس سانتوس حضور داشته باشند.</span></div>
+        <div class="rule"><div class="rule-num">۵</div><span>رعایت نظافت شخصی و تعامل رسمی با یکدیگر الزامی‌ست.</span></div>
+        <div class="rule"><div class="rule-num">۶</div><span>با تمامی شهروندان باید به صورت یکسان و محترمانه برخورد شود.</span></div>
+        <div class="rule"><div class="rule-num">۷</div><span>سر شیفت باید مشغول کار بود و از فرار از وظیفه خودداری شود.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- بخش ۵ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-badge">بخش ۵</span>
+      <span class="section-icon">🚑</span>
+      <span class="section-title">شرایط استفاده از وسیله نقلیه</span>
+    </div>
+    <div class="section-body">
+      <div class="vehicle-list">
+        <div class="vehicle-item"><span class="v-dot">›</span><span>تیم اورژانس حداقل <strong>۲</strong> و حداکثر <strong>۴</strong> نفر باشند.</span></div>
+        <div class="vehicle-item"><span class="v-dot">›</span><span>درایور بجز رانندگی هیچ خدمات دیگری انجام ندهد.</span></div>
+        <div class="vehicle-item"><span class="v-dot">›</span><span>بجز خدمات سریایی مشکل جدی، بیمار را سوار اورژانس کرده و به بیمارستان برسانند.</span></div>
+        <div class="vehicle-item"><span class="v-dot">›</span><span>بالگرد فقط در شرایطی که نیاز فوری به درمان‌رسانی است استفاده شود.</span></div>
+      </div>
+      <br>
+      <table class="access-table">
+        <tr>
+          <th>رتبه</th>
+          <th>دسترسی به وسیله</th>
+        </tr>
+        <tr><td>بالگرد</td><td>RANK 3+</td></tr>
+        <tr><td>اورژانس</td><td>RANK 5+</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- بخش ۶ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-badge">بخش ۶</span>
+      <span class="section-icon">👨‍⚕️</span>
+      <span class="section-title">درجه‌بندی سازمان</span>
+    </div>
+    <div class="section-body">
+      <div class="ranks-list">
+        <div class="rank-item">
+          <div><div class="rank-badge">RANK 1</div></div>
+          <div><div class="rank-name">Orderly</div><div class="rank-role">عضو کارآموز تیم</div></div>
+        </div>
+        <div class="rank-item">
+          <div><div class="rank-badge">RANK 2-3</div></div>
+          <div><div class="rank-name">Junior / Senior Medical Staff</div><div class="rank-role">تیم پاسخگویی به درخواست‌های اورژانس</div></div>
+        </div>
+        <div class="rank-item">
+          <div><div class="rank-badge">RANK 4-5-6</div></div>
+          <div><div class="rank-name">Anesthetsit / Jr. Surgeon / Doctor-District</div><div class="rank-role">تیم امداد رسانی و اورژانس</div></div>
+        </div>
+        <div class="rank-item">
+          <div><div class="rank-badge">RANK 7</div></div>
+          <div><div class="rank-name">Surgeon</div><div class="rank-role">تیم متخصصین</div></div>
+        </div>
+        <div class="rank-item">
+          <div><div class="rank-badge">RANK 8</div></div>
+          <div><div class="rank-name">Professor</div><div class="rank-role">دستیار معاونین</div></div>
+        </div>
+        <div class="rank-item">
+          <div><div class="rank-badge">RANK 9</div></div>
+          <div><div class="rank-name">Head of Department</div><div class="rank-role">معاونین سازمان</div></div>
+        </div>
+        <div class="rank-item">
+          <div><div class="rank-badge">LEDER</div></div>
+          <div><div class="rank-name">Head Physician</div><div class="rank-role">رئیس بیمارستان</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- بخش ۷ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-badge">بخش ۷</span>
+      <span class="section-icon">✏️</span>
+      <span class="section-title">وظایف تیم‌ها</span>
+    </div>
+    <div class="section-body">
+      <div class="duty-item">
+        <div class="duty-title">🎓 تیم کارآموز</div>
+        انجام فعالیت درون سازمان، آموزش دیدن و کمک‌رسانی به تیم‌های دیگر.
+      </div>
+      <div class="duty-item">
+        <div class="duty-title">📞 تیم پاسخگویی (Dispatch)</div>
+        مسئول اطلاع‌رسانی به تیم‌های امداد و اورژانس، پاسخگویی به نیروها، بررسی پرونده‌های موجود در سازمان و جواب دادن به تماس‌های سازمان. در مواقعی که می‌خواهید با مرکز صحبت کنید، این شخص پاسخ می‌دهد.
+      </div>
+      <div class="duty-item">
+        <div class="duty-title">🚑 تیم امداد رسانی و اورژانس</div>
+        <strong>آدام (Adam):</strong> هر تیم گشتی ۲ نفره که مأمور می‌شوند تا در محدوده‌ای مشخص گشت‌زنی کنند.<br><br>
+        <strong>گشت هوایی (Air Patrol):</strong> نیروی گشت هوایی با بالگرد در محدوده شهر.<br><br>
+        <strong>گشت زمینی (Ground Patrol):</strong> نیروهایی که در محدوده شهر با خودرو سازمان گشت می‌زنند.
+      </div>
+      <div class="duty-item">
+        <div class="duty-title">🤝 دستیار معاونین</div>
+        تیمی تشکیل‌شده از دستیار معاونین که توسط معاونین انتخاب می‌شوند و در مدیریت تیم مربوطه کمک می‌کنند.
+      </div>
+      <div class="duty-item">
+        <div class="duty-title">⚙️ معاونین</div>
+        موظف به اجرای دستورات رئیس بیمارستان و نظارت بر فعالیت تیم‌های تحت کنترل خود.
+      </div>
+      <div class="duty-item">
+        <div class="duty-title">👑 رئیس بیمارستان</div>
+        مسئول انتخاب معاونین، مدیریت کلی سازمان، برنامه‌ریزی و جلوگیری از هرگونه آسیب به بیماران و سلامت شهر.
+      </div>
+    </div>
+  </div>
+
+  <!-- بخش ۸ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-badge">بخش ۸</span>
+      <span class="section-icon">💰</span>
+      <span class="section-title">قیمت خدمات پزشکی</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:13px; color: var(--muted); margin-bottom:16px;">کلیه سازمان‌های دولتی به دلیل بیمه‌نامه در تمامی خدمات از تخفیف بیمه برخوردار هستند.</p>
+
+      <div class="price-group">
+        <div class="price-group-title">💊 قیمت داروهای درمانی</div>
+        <div class="price-row"><span>کارمندان دولت</span><span class="price-val">10k</span></div>
+        <div class="price-row"><span>شهروندان ایالت امگا</span><span class="price-val">25k</span></div>
+        <div class="price-row"><span>افراد گروه مافیا</span><span class="price-val">50k</span></div>
+        <div class="price-row"><span>افراد گنگستر (گتو)</span><span class="price-val">80k</span></div>
+      </div>
+
+      <div class="price-group">
+        <div class="price-group-title">🏥 قیمت خدمات درمانی درون سازمان</div>
+        <div class="price-row"><span>کارمندان دولت</span><span class="price-val">100k</span></div>
+        <div class="price-row"><span>شهروندان ایالت</span><span class="price-val">250k</span></div>
+      </div>
+
+      <div class="price-group">
+        <div class="price-group-title">🚑 قیمت خدمات درونی خارج سازمان</div>
+        <div class="price-row"><span>کارمندان دولت</span><span class="price-val">250k</span></div>
+        <div class="price-row"><span>شهروندان ایالت</span><span class="price-val">400k</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- بخش ۹ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-badge">بخش ۹</span>
+      <span class="section-icon">📻</span>
+      <span class="section-title">کدهای رادیویی</span>
+    </div>
+    <div class="section-body">
+      <div class="codes-list">
+        <div class="code-item"><span class="code-tag">CODE 0</span><span>بازی کرش شد یا اینترنت قطع شد</span></div>
+        <div class="code-item"><span class="code-tag blue">CODE 1</span><span>—</span></div>
+        <div class="code-item"><span class="code-tag blue">CODE 2</span><span>درخواست پشتیبانی هوایی</span></div>
+        <div class="code-item"><span class="code-tag green">CODE 4</span><span>وضعیت فعلی خاتمه یافت، نیاز به پیگیری نیست</span></div>
+
+        <div style="height:1px; background: var(--border); margin: 8px 0;"></div>
+
+        <div class="code-item"><span class="code-tag blue">[10-1]</span><span>جمع شدن همه در مکان مشخص‌شده</span></div>
+        <div class="code-item"><span class="code-tag blue">[10-2]</span><span>سکوت اجبار در محل</span></div>
+        <div class="code-item"><span class="code-tag blue">[10-3]</span><span>خلوت کردن چت</span></div>
+        <div class="code-item"><span class="code-tag green">[10-4]</span><span>شنیده شدن و قبول شدن</span></div>
+        <div class="code-item"><span class="code-tag blue">[10-5]</span><span>آخرین پیام را دوباره تکرار کن</span></div>
+        <div class="code-item"><span class="code-tag">[10-6]</span><span>نادیده گرفتن / رد کردن / قبول نکردن</span></div>
+        <div class="code-item"><span class="code-tag">[10-7]</span><span>عملیات کنسل شد</span></div>
+        <div class="code-item"><span class="code-tag green">[10-8]</span><span>آماده باش</span></div>
+        <div class="code-item"><span class="code-tag blue">[10-9]</span><span>مشغول هستم / در دسترس نیستم</span></div>
+        <div class="code-item"><span class="code-tag green">[10-10]</span><span>موفق شدن در عملیات</span></div>
+        <div class="code-item"><span class="code-tag">[10-11]</span><span>موفق نشدن در عملیات</span></div>
+        <div class="code-item"><span class="code-tag blue">[10-12]</span><span>درخواست مذاکره‌کننده</span></div>
+        <div class="code-item"><span class="code-tag blue">[10-13]</span><span>تعداد نفرات مجرمین حاضر در صحنه</span></div>
+        <div class="code-item"><span class="code-tag blue">[10-14]</span><span>حضور مورد مشکوک در صحنه (کمتر از ۳ نفر)</span></div>
+        <div class="code-item"><span class="code-tag green">[10-15]</span><span>مجرم دستگیر شد</span></div>
+        <div class="code-item"><span class="code-tag">[10-16]</span><span>شهروند به قتل رسید</span></div>
+        <div class="code-item"><span class="code-tag">[10-17]</span><span>مورد مشکوک همراه با احتمال شورش (۳+ نفر)</span></div>
+        <div class="code-item"><span class="code-tag blue">[10-18]</span><span>در حال ترک شهر</span></div>
+        <div class="code-item"><span class="code-tag">[10-19]</span><span>مجرم در حال فرار با وسیله نقلیه هوایی</span></div>
+        <div class="code-item"><span class="code-tag blue">[10-20]</span><span>اعلام دقیق مکان</span></div>
+        <div class="code-item"><span class="code-tag blue">[10-21]</span><span>اعلام دقیق موقعیت (شرایط - افراد حاضر)</span></div>
+        <div class="code-item"><span class="code-tag">[10-22]</span><span>مجرم به ایونت فرار کرد</span></div>
+        <div class="code-item"><span class="code-tag">[10-23]</span><span>مجرم صحنه RP را ترک کرد (RRP)</span></div>
+        <div class="code-item"><span class="code-tag green">[10-24]</span><span>وضعیت سفید</span></div>
+        <div class="code-item"><span class="code-tag">[10-25]</span><span>وضعیت قرمز</span></div>
+        <div class="code-item"><span class="code-tag blue">[10-26]</span><span>درخواست ورود به شهر</span></div>
+        <div class="code-item"><span class="code-tag green">[10-99]</span><span>مأموریت خاتمه یافت</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  🏥 <span>Los Santos Medical Center</span> — ایالت امگا<br>
+  تمامی حقوق محفوظ است
+</div>
+
+</body>
+</html>
